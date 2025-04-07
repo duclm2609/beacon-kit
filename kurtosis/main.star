@@ -66,12 +66,12 @@ def run(plan, network_configuration = {}, node_settings = {}, eth_json_rpc_endpo
 
     # 4 a. Create genesis files only once and pass it to the node configs
     genesis_files = nodes.create_genesis_files_part1(plan, chain_id)
-    plan.print('>>>>>>>> Main: Genesis file: {}', genesis_files)
+    plan.print('>>>>>>>> Main: Genesis file: {}'.format(genesis_files))
 
     # 4b. Modify the eth genesis file with the premined deposits && finalize CL genesis file.
     # Get the deposit storage values stored in env variables
     env_vars = beacond.modify_genesis_files_deposits(plan, validators, genesis_files, chain_id, chain_spec, stored_configs)
-    plan.print('>>>>>>>> Main: CL: env_vars: {}', env_vars)
+    plan.print('>>>>>>>> Main: CL: env_vars: {}'.format(env_vars))
 
     # Extract values from env_vars
     genesis_deposits_root = env_vars.get("GENESIS_DEPOSITS_ROOT")
@@ -79,7 +79,7 @@ def run(plan, network_configuration = {}, node_settings = {}, eth_json_rpc_endpo
 
     # 4c. Modify the eth genesis files(for both nethermind and default) with the ENV VARS
     genesis_files = nodes.create_genesis_files_part2(plan, chain_id, genesis_deposits_root, genesis_deposit_count_hex)
-    plan.print('>>>>>>>> Main: modified genesis files with ENV VARS: {}', genesis_files)
+    plan.print('>>>>>>>> Main: modified genesis files with ENV VARS: {}'.format(genesis_files))
 
     el_enode_addrs = []
     metrics_enabled_services = metrics_enabled_services[:]
@@ -109,7 +109,7 @@ def run(plan, network_configuration = {}, node_settings = {}, eth_json_rpc_endpo
         seed_node_config = beacond.create_node_config(plan, seed, consensus_node_peering_info, seed.el_service_name, chain_id, chain_spec, genesis_deposits_root, genesis_deposit_count_hex, jwt_file, kzg_trusted_setup)
         seed_node_configs[seed.cl_service_name] = seed_node_config
 
-    plan.print(">>>>>>>>>>>> Main: add seed node client with config: {}", seed_node_configs)
+    plan.print(">>>>>>>>>>>> Main: add seed node client with config: {}".format(seed_node_configs))
     seed_nodes_clients = plan.add_services(
         configs = seed_node_configs,
     )
@@ -143,7 +143,7 @@ def run(plan, network_configuration = {}, node_settings = {}, eth_json_rpc_endpo
         full_node_configs[full.cl_service_name] = full_node_config
 
     if full_node_configs != {}:
-        plan.print(">>>>>>>>>>>> Main: add full node with config: {}", full_node_configs)
+        plan.print(">>>>>>>>>>>> Main: add full node with config: {}".format(full_node_configs))
         services = plan.add_services(
             configs = full_node_configs,
         )
@@ -174,7 +174,7 @@ def run(plan, network_configuration = {}, node_settings = {}, eth_json_rpc_endpo
         validator_node_config = beacond.create_node_config(plan, validator, consensus_node_peering_info, validator.el_service_name, chain_id, chain_spec, genesis_deposits_root, genesis_deposit_count_hex, jwt_file, kzg_trusted_setup)
         validator_node_configs[validator.cl_service_name] = validator_node_config
 
-    plan.print(">>>>>>>>>>>> Main: add CL validator nodes with config: {}", validator_node_configs)
+    plan.print(">>>>>>>>>>>> Main: add CL validator nodes with config: {}".format(validator_node_configs))
     cl_clients = plan.add_services(
         configs = validator_node_configs,
     )
