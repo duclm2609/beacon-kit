@@ -29,6 +29,9 @@ DEPOSIT_ROOT=$(jq -r '.alloc["0x4242424242424242424242424242424242424242"].stora
 
 /usr/bin/beacond genesis execution-payload /tmp/config_genesis/.beacond/genesis.json --home /tmp/config_genesis/.beacond
 
+cat /tmp/config_genesis/.beacond/genesis.json
+
+
 # Write each value to separate files for easier parsing
 mkdir -p /tmp/values
 printf "%s" "$DEPOSIT_COUNT" > /tmp/values/deposit_count.txt
