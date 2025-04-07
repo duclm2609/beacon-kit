@@ -92,6 +92,7 @@ def run(plan, network_configuration = {}, node_settings = {}, eth_json_rpc_endpo
     geth_config_artifact = None
     if "geth" in node_modules and node_modules["geth"] != None:
         geth_config_artifact = node_modules["geth"].process_geth_config(plan, chain_id)
+        plan.print(">>>>>>>>>> MAIN: geth config: {}".format(geth_config_artifact))
 
     # Start seed nodes
     seed_node_el_client_configs = []
