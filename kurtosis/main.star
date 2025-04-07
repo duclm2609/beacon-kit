@@ -62,7 +62,7 @@ def run(plan, network_configuration = {}, node_settings = {}, eth_json_rpc_endpo
 
     # 3. Perform genesis ceremony for the CL genesis deposits.
     stored_configs = beacond.perform_genesis_deposits_ceremony(plan, validators, jwt_file, chain_id, chain_spec)
-    plan.print('>>>>>>>> Main: CL: Stored configs: {}', stored_configs)
+    plan.print('>>>>>>>> Main: CL: Stored configs: {}'.format(stored_configs))
 
     # 4 a. Create genesis files only once and pass it to the node configs
     genesis_files = nodes.create_genesis_files_part1(plan, chain_id)
