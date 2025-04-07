@@ -150,6 +150,8 @@ def deploy_nodes(plan, configs, is_full_node = False):
     for config in configs:
         service_configs[config["name"]] = service_config_lib.create_from_config(config, is_full_node)
 
+    plan.print(">>>>>>>>>>>> Execution layer: deploy node with config: {}", service_configs)
+
     return plan.add_services(
         configs = service_configs,
     )

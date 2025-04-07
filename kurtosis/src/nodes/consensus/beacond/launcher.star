@@ -259,6 +259,9 @@ def dial_unsafe_peers(plan, seed_service_name, peers):
         exec_recipe = ExecRecipe(
             command = curl_command,
         )
+
+
+        plan.print(">>>>>>>>>> Dialing unsafe peers: {}", curl_command)
         plan.exec(
             service_name = seed_service_name,
             recipe = exec_recipe,
