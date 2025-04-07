@@ -116,6 +116,7 @@ def run(plan, network_configuration = {}, node_settings = {}, eth_json_rpc_endpo
     )
     for n, seed_client in enumerate(seed_nodes):
         peer_info = beacond.get_peer_info(plan, seed_client.cl_service_name)
+        plan.print(">>>>>>>>>>>> Main: CL seed client peer info: {}".format(peer_info))
         consensus_node_peering_info.append(peer_info)
         metrics_enabled_services.append({
             "name": seed_client.cl_service_name,
@@ -183,6 +184,7 @@ def run(plan, network_configuration = {}, node_settings = {}, eth_json_rpc_endpo
     for n, validator in enumerate(validators):
         peer_info = beacond.get_peer_info(plan, validator.cl_service_name)
         all_consensus_peering_info[validator.cl_service_name] = peer_info
+        plan.print(">>>>>>>>>>>> Main: CL all consensus peering info: {}".format(all_consensus_peering_info))
         metrics_enabled_services.append({
             "name": validator.cl_service_name,
             "service": cl_clients[validator.cl_service_name],

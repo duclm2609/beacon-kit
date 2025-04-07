@@ -236,6 +236,8 @@ def create_node_config(plan, node_struct, peers, paired_el_client_name, chain_id
 
     beacond_config.files["/root/.tmp_genesis"] = Directory(artifact_names = ["cosmos-genesis-final"])
 
+    plan.print(">>>>>>>>>>> CL launcher: create_node_config: beacon node file config: {}".format(beacond_config.files))
+
     plan.print(beacond_config)
 
     return beacond_config
